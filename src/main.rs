@@ -54,7 +54,6 @@ impl GameState for State {
                 .execute(&mut self.ecs, &mut self.resources),
         }
         render_draw_buffer(ctx).expect("Render error");
-        let current_state = self.resources.get::<TurnState>().unwrap().clone();
     }
 }
 
