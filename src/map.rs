@@ -9,12 +9,14 @@ pub enum TileType {
 
 pub struct Map {
     pub tiles: Vec<TileType>,
+    pub revealed_tiles: Vec<bool>,
 }
 
 impl Map {
     pub fn new() -> Self {
         Self {
             tiles: vec![TileType::Floor; NUM_TILES],
+            revealed_tiles: vec![false; NUM_TILES],
         }
     }
 
@@ -84,5 +86,9 @@ impl BaseMap for Map {
             exits.push((idx, 1.0))
         }
         exits
+    }
+
+    fn is_opaque(&self, _idx: usize) -> bool {
+        self.tiles[_idx as usize] != TileType::Floor
     }
 }
